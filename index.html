@@ -24,7 +24,7 @@
         <![endif]-->
 
 	<!-- Add your site or application content here -->
-	<form>
+	<form name="bmicalc_form" action="#">
 		<table>
 			<caption>
 				<h2>BMI计算器</h2></caption>
@@ -32,23 +32,23 @@
 				<tr>
 					<td>年龄：</td>
 					<td>
-						<input type="numbler" min="5" max="70" id="age" name="age"> 岁</td>
+						<input type="numbler" min="5" max="70" id="age" name="age" maxlength="2"> 岁</td>
 				</tr>
 				<tr>
 					<td>体重：</td>
 					<td>
-						<input type="numbler" min="20" max="10" id="weight" name="weight">公斤（KG）</td>
+						<input type="numbler" min="20" max="10" id="weight" name="weight" maxlength="4"> 公斤（kg）</td>
 				</tr>
 				<tr>
 					<td>身高：</td>
 					<td>
-						<input type="numbler" min="1" max="2" id="height" name="height">米（M）</td>
+						<input type="numbler" min="1" max="2" id="height" name="height" maxlength="4"> 米（m）</td>
 				</tr>
 				<tr>
 					<td>性别：</td>
 					<td>
 						<input type="radio" id="gender" name="gender" checked value="male">男&nbsp;
-						<input type="radio" id="gender" name="gender" value="'female">女</td>
+						 <input type="radio" id="gender" name="gender" value="'female">女</td>
 				</tr>
 			</tbody>
 			<tfoot>
@@ -67,7 +67,6 @@
 		<p>结果：您的BMI为<input type="numbler" min="5" max="100" id="bmi" name="bmi">kg/m^2</td></p>
 	</div>
 	<script src="js/jquery.min.js"></script>
-	<script src="js/plugins.js"></script>
 	<script src="js/bmi.js"></script>
 </body>
 
