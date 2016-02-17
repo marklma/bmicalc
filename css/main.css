@@ -93,7 +93,7 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
-err {
+.err {
     border-color: red;
 }
 

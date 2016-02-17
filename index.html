@@ -37,12 +37,12 @@
 				<tr>
 					<td>体重：</td>
 					<td>
-						<input type="numbler" min="20" max="10" id="weight" name="weight" maxlength="4"> 公斤（kg）</td>
+						<input type="numbler" min="20" max="10" id="weight" name="weight" maxlength="5"> 公斤（kg）</td>
 				</tr>
 				<tr>
 					<td>身高：</td>
 					<td>
-						<input type="numbler" min="1" max="2" id="height" name="height" maxlength="4"> 米（m）</td>
+						<input type="numbler" min="1" max="2" id="height" name="height" maxlength="5"> 米（m）</td>
 				</tr>
 				<tr>
 					<td>性别：</td>
@@ -57,16 +57,17 @@
 						<input type="reset">
 					</td>
 					<td>
-						<input type="button" id="submit" value="查询">
+						<input type="submit" id="submit" value="查询">
 					</td>
 				</tr>
 			</tfoot>
 		</table>
 	</form>
 	<div id='result'>
-		<p>结果：您的BMI为<input type="numbler" min="5" max="100" id="bmi" name="bmi">kg/m^2</td></p>
+		<p>结果：您的BMI为<input type="numbler" min="5" max="100" id="bmi" name="bmi" readonly="readonly" maxlength="5">kg/m^2</td></p>
 	</div>
 	<script src="js/jquery.min.js"></script>
+	<script src="js/validate.min.js"></script>
 	<script src="js/bmi.js"></script>
 </body>
 

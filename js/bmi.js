@@ -1,53 +1,41 @@
 $(function() {
-	var errStr = '';
-
-	function errAlert(f, s) {
-		errStr = errStr + s;
-		f.addClass('err');
-		return false;
-	}
-
-	function checkReq(field, str) {
-		v = field.val();
-		if ($.trim(v) == '' || $.trim(v).length == 0 || $.trim(v) == null) {
-			return true;
-		} else {
-			return errAlert(field, str + '为必须项;<br/>');
-		}
-	}
-
-	function checkNum(field) {
-		v = field.val();
-		if (!/^[0-9]\d*$/.test($.trim(value))) {
-			return true;
-		} else {
-			return errAlert(field, str + '必须为数字;<br/>');
-		}
-	}
-
-	function checkNumNRange(field, max, min) {
-		if (checkNum(field)) {
-			v = field.val();
-			return (v <= max && v >= min);
-		} else {
-			return errAlert(field, str + '数字范围必须是'+max+'和'+min+'之间;<br/>');
-		}
-	}
+	age = $('#age');
+	weight = $('#weight');
+	height = $('#height');
 
 	function calcBmi() {
-		age = $('#age');
-		weight = $('#weight');
-		height = $('#height');
-		alert(errStr);
-		errStr = '';
 		$('input').removeClass('err');
-
 		bmi = weight.val() / height.val() / height.val();
 		$("#bmi").val(bmi);
 		alert(bmi);
 	}
-	$('#submit').click(function() {
-		if ()
+	var validator = new FormValidator('bmicalc_form', [{
+		name: 'age',
+		display: '年龄',
+		rules: 'required|numeric|greater_than[5]|less_than[70]',
+		depends: function(f) {
+			$('input').removeClass("err");
+			return true;
+		}
+	}, {
+		name: 'weight',
+		display: '体重',
+		rules: 'required|min_length[2]|decimal|greater_than[15]|less_than[300]'
+	}, {
+		name: 'height',
+		display: '身高',
+		rules: 'required|min_length[3]|decimal|greater_than[1]|less_than[3]'
+	}], function(errors, event) {
+		if (errors.length > 0) {
+			var errorString = '';
+			for (var i = 0, errorLength = errors.length; i < errorLength; i++) {
+				errorString += errors[i].message + '<br />';
+				$('#' + errors[i].id).addClass('err');
+			}
+			alert(errorString);
+		} else {
 			calcBmi();
-	});
+		}
+		event.preventDefault();
+	}).setMessage('required', '%s是必须的！').setMessage('numeric', '%s必须是数字！').setMessage('decimal', '%s必须是小数或整数！').setMessage('min_length', '%s字符的长度必须大于%s！').setMessage('greater_than', '%s必须大于%s！').setMessage('less_than', '%s必须小于%s！');
 });
