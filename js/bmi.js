@@ -2,18 +2,18 @@ $(function() {
 	age = $('#age');
 	weight = $('#weight');
 	height = $('#height');
-
+	// 计算BMI
 	function calcBmi() {
 		$('input').removeClass('err');
 		bmi = weight.val() / height.val() / height.val();
-		$("#bmi").val(bmi);
-		alert(bmi);
+		$("#bmi_result").val(bmi);
 	}
+	// 对FORM进行验证
 	var validator = new FormValidator('bmicalc_form', [{
 		name: 'age',
 		display: '年龄',
 		rules: 'required|numeric|greater_than[5]|less_than[70]',
-		depends: function(f) {
+		depends: function(f) {//清除所有错误告警
 			$('input').removeClass("err");
 			return true;
 		}
