@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>BMI计算器</title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="description" content="bmi计算器">
+    <meta name="keywords" content="bmi,weight,height,body mass index,身体质量指数">
+    <meta name="author" content="marktofit">
+    <meta name="renderer" content="webkit">
+    <link href="/favicon.ico" rel="icon">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+    <script src="js/modernizr-2.6.2.min.js"></script>
+</head>
+
+<body>
+    <!--[if lt IE 7]>
+            <p class="chromeframe">您正在使用一个<strong>过时</strong>的浏览器，请<a href="http://browsehappy.com/">升级您的浏览器</a>以获得更好的浏览体验。</p>
+        <![endif]-->
+    <!-- Add your site or application content here -->
+    <div id="mainbmi">
+        <form name="bmicalc_form">
+            <table>
+                <caption>
+                    <h2>BMI计算器</h2></caption>
+                <tbody>
+                    <tr>
+                        <td>
+                            <label for="age">年龄：</label>
+                        </td>
+                        <td>
+                            <input type="numbler" min="5" max="70" id="age" name="age" maxlength="2" size="5"> 岁
+                            <span id="monspan">
+							<select id='month' name="month">
+								<option value="0" selected="selected">0</option>
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+								<option value="6">6</option>
+								<option value="7">7</option>
+								<option value="8">8</option>
+								<option value="9">9</option>
+								<option value="10">10</option>
+								<option value="11">11</option>
+							</select> 月
+						</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="weight">体重：</label>
+                        </td>
+                        <td>
+                            <input type="numbler" min="20" max="10" id="weight" name="weight" maxlength="5" size="5"> 公斤（kg）</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="height">身高：</label>
+                        </td>
+                        <td>
+                            <input type="numbler" value='1.' min="1" max="2" id="height" name="height" maxlength="5" size="5"> 米（m）</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="gender">性别：</label>
+                        </td>
+                        <td>
+                            <input type="radio" id="gender" name="gender" checked value="male">男&nbsp;
+                            <input type="radio" id="gender" name="gender" value="'female">女</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td>
+                            <input type="reset">
+                        </td>
+                        <td>
+                            <input type="button" id="calc" value="查询">
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </form>
+        <div>
+            <p>体质指数计算公式：BMI=体重（kg）÷身高<sup>2</sup>（m）
+                <br/> 结果：您的BMI为
+                <input type="numbler" id="bmi_result" name="bmi_result" readonly="readonly" maxlength="5" size="5"> kg/m<sup>2</sup></td>
+            </p>
+        </div>
+        <div id='norbmi'></div>
+        <div id='result'>
+            <div id='result_sd2neg'>按照正常人角度考虑（非运动员、健美人士、幼儿、老人等），您的体质<strong>偏瘦</strong>，需要考虑增肌或塑形而不是减肥/减脂。如果您是这样的体重还是感到自己腰腹或者臀腿有着不少的脂肪这就表明您肌肉含量不够，需要锻炼+饮食的调控以获得更多的肌肉含量让身材更匀称美观。</div>
+            <div id='result_sd0'>恭喜您，按照中国标准你的BMI在正常范围，可以考虑塑形或增肌。如果您是这样的体重还是感到自己腰腹或者臀腿有着不少的脂肪这就表明您肌肉含量不够，需要锻炼+饮食的调控以获得更多的肌肉含量让身材更匀称。</div>
+            <div id='result_sd1'>很遗憾，按照中国标准您属于<strong>超重</strong>范围，可以考虑减肥。</div>
+            <div id='result_sd2'>很遗憾，按照WHO标准您属于<strong>肥胖</strong>范围，需要考虑减肥。</div>
+            <div id='result_sd3'>很遗憾，按照WHO标准您属于<strong>重度肥胖范围</strong>，需要考虑减肥。</div>
+            <div id='result_sd4'>很遗憾，按照BMI标准您属于<strong>极重度肥胖</strong>范围，需要考虑减肥。</div>
+        </div>
+        <br/>
+        <div>
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th><a href="http://baike.baidu.com/link?url=ShVGJ4xwX4pFeL_sX9njGaKFXzx7Vnsprd3sb1DS1-U7f1VE79CGsa6Eamn-i-7G">BMI</a></th>
+                        <th>WHO标准</th>
+                        <th>亚洲标准</th>
+                        <th>中国标准</th>
+                        <th>相关疾病发病危险性</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>偏瘦</td>
+                        <td>&lt;18.5</td>
+                        <td>&lt;18.5</td>
+                        <td>&lt;18.5</td>
+                        <td>低（但其它疾病危险性增加）</td>
+                    </tr>
+                    <tr>
+                        <td>正常</td>
+                        <td>18.5-24.9</td>
+                        <td>18.5-22.9</td>
+                        <td>18.5-23.9</td>
+                        <td>平均水平</td>
+                    </tr>
+                    <tr>
+                        <td>超重</td>
+                        <td>≥25</td>
+                        <td>≥23</td>
+                        <td>≥24</td>
+                        <td>略增加</td>
+                    </tr>
+                    <tr>
+                        <td>偏胖</td>
+                        <td>25.0～29.9</td>
+                        <td>23～24.9</td>
+                        <td>24～27.9</td>
+                        <td>增加</td>
+                    </tr>
+                    <tr>
+                        <td>肥胖</td>
+                        <td>30.0～34.9</td>
+                        <td>25～29.9</td>
+                        <td>≥28</td>
+                        <td>中度增加</td>
+                    </tr>
+                    <tr>
+                        <td>重度肥胖</td>
+                        <td>35.0～39.9</td>
+                        <td>≥30</td>
+                        <td>——</td>
+                        <td>严重增加</td>
+                    </tr>
+                    <tr>
+                        <td>极重度肥胖</td>
+                        <td>≥40.0</td>
+                        <td>≥40.0</td>
+                        <td>≥40.0</td>
+                        <td>非常严重增加</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/validate.min.js"></script>
+    <script src="js/bmi.js"></script>
+</body>
+
+</html>
