@@ -27,7 +27,7 @@
         <![endif]-->
 
 	<!-- Add your site or application content here -->
-	<form name="bmicalc_form" action="#">
+	<form name="bmicalc_form">
 		<table>
 			<caption>
 				<h2>BMI计算器</h2></caption>
@@ -37,21 +37,38 @@
 						<label for="age">年龄：</label>
 					</td>
 					<td>
-						<input type="numbler" min="5" max="70" id="age" name="age" maxlength="2"> 岁</td>
+						<input type="numbler" min="5" max="70" id="age" name="age" maxlength="2" size="5"> 岁
+						<span id="monspan">
+							<select id='month' name="month">
+								<option value="0" selected="selected">0</option>
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+								<option value="6">6</option>
+								<option value="7">7</option>
+								<option value="8">8</option>
+								<option value="9">9</option>
+								<option value="10">10</option>
+								<option value="11">11</option>
+							</select> 月
+						</span>
+					</td>
 				</tr>
 				<tr>
 					<td>
 						<label for="weight">体重：</label>
 					</td>
 					<td>
-						<input type="numbler" min="20" max="10" id="weight" name="weight" maxlength="5"> 公斤（kg）</td>
+						<input type="numbler" min="20" max="10" id="weight" name="weight" maxlength="5" size="5"> 公斤（kg）</td>
 				</tr>
 				<tr>
 					<td>
 						<label for="height">身高：</label>
 					</td>
 					<td>
-						<input type="numbler" min="1" max="2" id="height" name="height" maxlength="5"> 米（m）</td>
+						<input type="numbler" value='1.' min="1" max="2" id="height" name="height" maxlength="5" size="5"> 米（m）</td>
 				</tr>
 				<tr>
 					<td>
@@ -68,17 +85,27 @@
 						<input type="reset">
 					</td>
 					<td>
-						<input type="submit" id="submit" value="查询">
+						<input type="button" id="calc" value="查询">
 					</td>
 				</tr>
 			</tfoot>
 		</table>
 	</form>
-	<div id='result'>
+	<div>
 		<p>结果：您的BMI为
-			<input type="numbler" id="bmi_result" name="bmi_result" readonly="readonly" maxlength="5">kg/m^2</td>
+			<input type="numbler" id="bmi_result" name="bmi_result" readonly="readonly" maxlength="5" size="5"> kg/m^2</td>
 		</p>
 	</div>
+	<div id='norbmi'></div>
+	<div id='result'>
+		<div id='result_sd2neg'>按照正常人角度考虑（非运动员、健美人士、幼儿、老人等），您的体质<strong>偏瘦</strong>，需要考虑增肌或塑形而不是减肥/减脂。如果您是这样的体重还是感到自己腰腹或者臀腿有着不少的脂肪这就表明您肌肉含量不够，需要锻炼+饮食的调控以获得更多的肌肉含量让身材更匀称美观。</div>
+		<div id='result_sd0'>恭喜您，按照中国标准你的BMI在正常范围，可以考虑塑形或增肌。如果您是这样的体重还是感到自己腰腹或者臀腿有着不少的脂肪这就表明您肌肉含量不够，需要锻炼+饮食的调控以获得更多的肌肉含量让身材更匀称。</div>
+		<div id='result_sd1'>很遗憾，按照中国标准您属于<strong>超重</strong>范围，可以考虑减肥。</div>
+		<div id='result_sd2'>很遗憾，按照WHO标准您属于<strong>肥胖</strong>范围，需要考虑减肥。</div>
+		<div id='result_sd3'>很遗憾，按照WHO标准您属于<strong>重度肥胖范围</strong>，需要考虑减肥。</div>
+		<div id='result_sd4'>很遗憾，按照BMI标准您属于<strong>极重度肥胖</strong>范围，需要考虑减肥。</div>
+	</div>
+	<br/>
 	<div>
 		<table border="1">
 			<thead>
